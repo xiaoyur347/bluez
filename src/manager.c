@@ -305,8 +305,10 @@ static void manager_remove_adapter(struct btd_adapter *adapter)
 	adapter_remove(adapter);
 	btd_adapter_unref(adapter);
 
-	if (adapters == NULL)
+	if (adapters == NULL) {
+		default_adapter_id = -1;
 		btd_start_exit_timer();
+	}
 }
 
 void manager_cleanup(DBusConnection *conn, const char *path)
