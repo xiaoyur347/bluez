@@ -5,6 +5,7 @@ Description=Bluetooth service
 Type=dbus
 BusName=org.bluez
 ExecStart=@prefix@/sbin/bluetoothd -n
+Restart=on-failure
 
 [Install]
 WantedBy=bluetooth.target
