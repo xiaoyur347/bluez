@@ -2597,8 +2597,10 @@ void headset_set_state(struct audio_device *dev, headset_state_t state)
 
 		/* Do not watch HUP since we need to know when the link is
 		   really disconnected */
+		/* Ubuntu Touch: Adding back G_IO_HUP as a workaround for
+		 * nexus devices */
 		hs->sco_id = g_io_add_watch(hs->sco,
-					G_IO_ERR | G_IO_NVAL,
+					G_IO_HUP | G_IO_ERR | G_IO_NVAL,
 					(GIOFunc) sco_cb, dev);
 
 		g_dbus_emit_signal(dev->conn, dev->path,
