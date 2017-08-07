@@ -1340,7 +1340,7 @@ static void user_passkey_notify(int index, void *ptr)
 	DBG("hci%d", index);
 
 	btd_event_user_notify(&dev->bdaddr, &req->bdaddr,
-						btohl(req->passkey));
+						btohl(req->passkey), req->entered);
 }
 
 static gint oob_bdaddr_cmp(gconstpointer a, gconstpointer b)

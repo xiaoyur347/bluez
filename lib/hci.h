@@ -2075,8 +2075,9 @@ typedef struct {
 typedef struct {
 	bdaddr_t	bdaddr;
 	uint32_t	passkey;
+	uint8_t 	entered;
 } __attribute__ ((packed)) evt_user_passkey_notify;
-#define EVT_USER_PASSKEY_NOTIFY_SIZE 10
+#define EVT_USER_PASSKEY_NOTIFY_SIZE 11
 
 #define EVT_KEYPRESS_NOTIFY		0x3C
 typedef struct {
