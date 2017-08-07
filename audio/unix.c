@@ -1761,9 +1761,11 @@ static gboolean client_cb(GIOChannel *chan, GIOCondition cond, gpointer data)
 	return TRUE;
 
 failed:
-	clients = g_slist_remove(clients, client);
-	start_close(client->dev, client, FALSE);
-	client_free(client);
+	if (g_slist_index(clients, client) != -1) {
+		clients = g_slist_remove(clients, client);
+		start_close(client->dev, client, FALSE);
+		client_free(client);
+	}
 	return FALSE;
 }
 
