@@ -826,7 +826,7 @@ static int hciops_encrypt_link(int index, bdaddr_t *dst, bt_hci_result_t cb,
 	if (dd < 0)
 		return -errno;
 
-	cr = g_malloc0(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = g_malloc0(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	cr->type = ACL_LINK;
 	bacpy(&cr->bdaddr, dst);
 

@@ -716,7 +716,7 @@ static void cmd_scan(int dev_id, int argc, char **argv)
 		cc = 0;
 
 		if (extinf) {
-			cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+			cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 			if (cr) {
 				bacpy(&cr->bdaddr, &(info+i)->bdaddr);
 				cr->type = ACL_LINK;
@@ -918,7 +918,7 @@ static void cmd_info(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't get connection info");
 		close(dd);
@@ -1324,7 +1324,7 @@ static void cmd_dc(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1450,7 +1450,7 @@ static void cmd_rssi(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1518,7 +1518,7 @@ static void cmd_lq(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1588,7 +1588,7 @@ static void cmd_tpl(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1658,7 +1658,7 @@ static void cmd_afh(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1739,7 +1739,7 @@ static void cmd_cpt(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1817,7 +1817,7 @@ static void cmd_lp(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1910,7 +1910,7 @@ static void cmd_lst(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -1994,7 +1994,7 @@ static void cmd_auth(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -2060,7 +2060,7 @@ static void cmd_enc(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -2127,7 +2127,7 @@ static void cmd_key(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -2193,7 +2193,7 @@ static void cmd_clkoff(int dev_id, int argc, char **argv)
 		exit(1);
 	}
 
-	cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+	cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 	if (!cr) {
 		perror("Can't allocate memory");
 		exit(1);
@@ -2270,7 +2270,7 @@ static void cmd_clock(int dev_id, int argc, char **argv)
 	}
 
 	if (bacmp(&bdaddr, BDADDR_ANY)) {
-		cr = malloc(sizeof(*cr) + sizeof(struct hci_conn_info));
+		cr = malloc(sizeof(*cr) + 2*sizeof(struct hci_conn_info));
 		if (!cr) {
 			perror("Can't allocate memory");
 			exit(1);
