@@ -223,7 +223,8 @@ static int mgmt_set_discoverable(int index, gboolean discoverable,
 	struct mgmt_hdr *hdr = (void *) buf;
 	struct mgmt_cp_set_discoverable *cp = (void *) &buf[sizeof(*hdr)];
 
-	DBG("index %d discoverable %d", index, discoverable);
+	DBG("index %d discoverable %d timeout %d", index,
+					discoverable, timeout);
 
 	memset(buf, 0, sizeof(buf));
 	hdr->opcode = htobs(MGMT_OP_SET_DISCOVERABLE);
@@ -322,7 +323,11 @@ static void update_settings(struct btd_adapter *adapter, uint32_t settings)
 	if (on_mode == MODE_DISCOVERABLE && !mgmt_discoverable(settings)) {
 		if(!mgmt_connectable(settings))
 			mgmt_set_connectable(index, TRUE);
-		mgmt_set_discoverable(index, TRUE, discoverable_timeout);
+		if (discoverable_timeout > 0) {
+			/* Ensure that discoverable mode is off */
+			mgmt_set_discoverable(index, FALSE, 0);
+		} else
+			mgmt_set_discoverable(index, TRUE, discoverable_timeout);
 	} else if (on_mode == MODE_CONNECTABLE && !mgmt_connectable(settings)) {
 		mgmt_set_connectable(index, TRUE);
 	} else if (mgmt_powered(settings)) {
