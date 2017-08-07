@@ -1548,8 +1548,8 @@ static void handle_service_disconnect(DBusConnection *conn, void *user_data)
 
 int telephony_init(void)
 {
+	/* Ubuntu: INBAND RINGTONE not set by default as not yet supported by userspace  */
 	uint32_t features = AG_FEATURE_EC_ANDOR_NR |
-				AG_FEATURE_INBAND_RINGTONE |
 				AG_FEATURE_REJECT_A_CALL |
 				AG_FEATURE_ENHANCED_CALL_STATUS |
 				AG_FEATURE_ENHANCED_CALL_CONTROL |
