@@ -1465,18 +1465,6 @@ static gboolean handle_hal_property_modified(DBusConnection *conn,
 	return TRUE;
 }
 
-static void add_watch(const char *sender, const char *path,
-				const char *interface, const char *member,
-				GDBusSignalFunction function)
-{
-	guint watch;
-
-	watch = g_dbus_add_signal_watch(connection, sender, path, interface,
-					member, function, NULL, NULL);
-
-	watches = g_slist_prepend(watches, GUINT_TO_POINTER(watch));
-}
-
 static void hal_find_device_reply(DBusPendingCall *call, void *user_data)
 {
 	DBusMessage *reply;
@@ -1528,6 +1516,18 @@ done:
 	remove_pending(call);
 }
 #endif /* Disable hal */
+
+static void add_watch(const char *sender, const char *path,
+				const char *interface, const char *member,
+				GDBusSignalFunction function)
+{
+	guint watch;
+
+	watch = g_dbus_add_signal_watch(connection, sender, path, interface,
+					member, function, NULL, NULL);
+
+	watches = g_slist_prepend(watches, GUINT_TO_POINTER(watch));
+}
 
 static void handle_service_connect(DBusConnection *conn, void *user_data)
 {
